@@ -1,0 +1,48 @@
+.form-container {
+  display: flex;
+  flex-direction: row;
+  .right {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    .filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8)
+    }
+  }
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .back-to-top {
+      text-decoration: none;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+  }
+  .form-box {
+      width: 300px;
+  }
+  .form-box-button {
+      width: 100%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .form-container {
+    .right {
+      display: none;
+    }
+  }
+}

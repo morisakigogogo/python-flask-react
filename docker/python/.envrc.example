@@ -1,0 +1,6 @@
+export FLASK_ENV=local
+
+#export GOOGLE_APPLICATION_CREDENTIALS=PATH/TO/ignore/gcs-service-account.json
+export GCS_BUCKET_NAME=python-react
+export GCS_BUCKET_PREFIX=local
+export STORAGE_TYPE=GCS # GCS or local

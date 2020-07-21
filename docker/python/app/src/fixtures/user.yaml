@@ -1,0 +1,7 @@
+- model: src.models.User
+  id: 1
+  fields:
+    name: test1
+    email: test1@test.com
+    password: 1111qqqq
+    school_id: 1

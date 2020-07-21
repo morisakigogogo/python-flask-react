@@ -1,0 +1,20 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from '../App';
+import store, { history } from '../store';
+import { ConfigProvider } from 'antd';
+import ja_JP from 'antd/lib/locale-provider/ja_JP';
+
+it('renders without crashißng', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(
+    <ConfigProvider locale={ja_JP}>
+      <Provider store={store}>
+        <App history={history} />
+      </Provider>
+    </ConfigProvider>,
+    div
+  );
+  ReactDOM.unmountComponentAtNode(div);
+});

@@ -1,0 +1,35 @@
+import os
+import shutil
+import glob
+# from .google_cloud_storage import GoogleCloudStorage
+
+
+class ProjectFiles:
+
+    def __init__(self, project):
+        # self.storage_type = os.getenv('STORAGE_TYPE', 'local')
+        # if self.storage_type == 'GCS':
+        #     self.gcs = GoogleCloudStorage()
+        # self.project = project
+        pass
+
+    def create(self):
+        # ファイル取得
+        # self._get_template_and_create_local("enchantjs1")
+
+    def _get_template_and_create_local(self, template_type):
+        pass
+        # template_dir = 'src/assets/project_templates/' + template_type
+
+        # if self.storage_type == 'local':
+        #     project_dir = os.getcwd() + '/../tmp/' + str(self.project.id)
+        #     shutil.copytree(template_dir, project_dir)
+        # if self.storage_type == 'GCS':
+        #     files = glob.glob(template_dir + "/**", recursive=True)
+        #     for file in files:
+        #         f = file.replace(template_dir + '/', '')
+        #         self.gcs.upload(str(self.project.id) + '/' + f, file)
+
+    def add_assets(self, filename):
+        pass
+        # self.gcs.upload(filename, os.path.join('src/assets/uploadfile', filename))

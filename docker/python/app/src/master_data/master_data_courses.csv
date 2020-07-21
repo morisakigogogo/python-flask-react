@@ -1,0 +1,4 @@
+id,title,description,color,order
+,,,,
+1,Python基本編,Pythonの基本を覚えましょう,#3673A5,0
+2,Python実践編,実際にPythonを使って様々な処理を実行してみましょう,#3673A5,1

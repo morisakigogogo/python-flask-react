@@ -1,0 +1,85 @@
+
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: python-db
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    volumes:
+      - ./docker/db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PW}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    ports:
+      - ${DB_PORT}:3306
+  pynginx:
+    image: nginx:1.17-alpine
+    container_name: pynginx
+    ports:
+      - ${WEB_PORT}:80
+    volumes:
+      - ./nginx/logs/:/var/log/nginx
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/public:/public
+    tty: true
+  # landing:
+  #   build:
+  #     context: ./docker/local/landing_nginx
+  #   ports:
+  #     - "8000:80"
+  #   volumes:
+  #     - ./tmp:/usr/share/nginx/projects
+  # #  tty: true
+  api:
+    build:
+      context: ./docker/python
+      dockerfile: Dockerfile
+    container_name: python-api
+    ports:
+      - ${API_PORT}:5001
+    volumes:
+      - ./docker/python/app:/app
+    depends_on:
+      - db
+    environment:
+      TZ: Asia/Tokyo
+      FLASK_ENV: "local"
+      FLASK_DEBUG: 1
+      PYTHONUNBUFFERED: 1
+      LANG: ja_JP.UTF-8
+    # command: flask run --host 0.0.0.0 --port 5001
+    # command: bash -c "pip install -r requirements.txt && python -u manage.py runserver --host 0.0.0.0 --port 5001 --debug"
+    # command: python -u manage.py runserver --host 0.0.0.0 --port 5001
+    # command: python manage.py db init
+    # command: python manage.py db migrate
+    # command: python manage.py db upgrade
+    # command: python manage.py db seed_data
+    command: 
+        - /bin/sh
+        - -c
+        - |
+         python -u manage.py runserver --host 0.0.0.0 --port 5001
+         python manage.py db init
+         python manage.py db migrate
+         python manage.py db upgrade
+         python manage.py db seed_data
+  # node-web:
+  #   image: node:12.13.0
+  #   container_name: node-web
+  #   tty: true
+  #   volumes:
+  #     - ${PROJECT_PATH}/web:/work
+  #   working_dir: /work
+  #   command: npm run build
+  #       # - /bin/sh
+  #       # - -c
+  #       # - |
+  #       #  npm install
+  #       #  npm audit fix
+  #       #  npm run build
+volumes:
+  db_data:
+     driver: local

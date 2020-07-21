@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+migrations
+tmp/
+!tmp/.gitkeep
+all.log
+logs/*
+!logs/.gitkeep

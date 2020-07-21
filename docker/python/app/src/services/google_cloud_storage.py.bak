@@ -1,0 +1,41 @@
+import os
+from google.cloud import storage
+
+
+class GoogleCloudStorage:
+    def __init__(self, *, dir_name=None):
+        self.client = storage.Client()
+        self.bucket = self.client.get_bucket(os.getenv('GCS_BUCKET_NAME'))
+        if dir_name is None:
+            self.dir = os.getenv('GCS_BUCKET_PREFIX')
+        else:
+            self.dir = dir_name
+
+    def upload(self, upload_name, file_path):
+        try:
+            name = self.dir + '/' + upload_name
+            blob = self.bucket.blob(name)
+            blob.upload_from_filename(file_path)
+        except Exception as e:
+            print(e)
+            return {'success': False}
+
+        print('success')
+        return {'success': True}
+
+    def get_list(self):
+        blobs = self.bucket.list_blobs(delimiter='/', prefix=self.dir + '/')
+        list = []
+        for blob in blobs:
+            name = blob.name.replace('local/', '')
+            if name != '':
+                list.append(name)
+        return list
+
+    def download_blob(self, source_blob_name, destination_file_name):
+        name = self.dir + '/' + source_blob_name
+        blob = self.bucket.blob(name)
+        blob.download_to_filename(destination_file_name)
+        # print('Blob {} downloaded to {}.'.format(
+        #     source_blob_name,
+        #     destination_file_name))

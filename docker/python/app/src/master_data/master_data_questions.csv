@@ -1,0 +1,12 @@
+id,title,description,study_id,no,order
+,,,,,
+1,appleをprintしてみましょう,printを使ってコンソールに'apple'と表示させてみましょう,2,1,0
+2,orangeをprintしてみましょう,printを使ってコンソールに'orange'と表示させてみましょう,2,2,1
+3,bananaをprintしてみましょう,printを使ってコンソールに'banana'と表示させてみましょう,2,3,2
+4,grapeをprintしてみましょう,printを使ってコンソールに'grape'と表示させてみましょう,2,4,3
+5,peachをprintしてみましょう,printを使ってコンソールに'peach'と表示させてみましょう,2,5,4
+6,melonをprintしてみましょう,printを使ってコンソールに'melon'と表示させてみましょう,2,6,5
+7,helloをprintしてみましょう,printを使ってコンソールに'hello'と表示させてみましょう,2,7,6
+8,worldをprintしてみましょう,printを使ってコンソールに'world'と表示させてみましょう,2,8,7
+9,おはようをprintしてみましょう,printを使ってコンソールに'おはよう'と表示させてみましょう,2,9,8
+10,世界をprintしてみましょう,printを使ってコンソールに'世界'と表示させてみましょう,2,10,9
